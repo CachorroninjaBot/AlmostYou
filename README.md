@@ -96,6 +96,8 @@ O servidor serve `apps/activity/dist` na raiz, `/api/*` e `/ws` na mesma origem,
 
 Com Redis, as salas sobrevivem a reinícios e deploys: o cliente reconecta, reentra na sala e o servidor retoma o timer da fase atual. Sem Redis, o estado vive apenas na memória.
 
+Para manutenção ou indisponibilidade do host, `apps/activity/public/offline.html` é uma página autocontida (sem dependências externas) que consulta `/api/health` a cada 6 segundos, mostra o número de tentativas e volta ao app sozinha quando o servidor responde. Ela detecta o idioma do navegador (en, pt, es, fr, de) e aceita `?lang=` e `?health=` para ajustes.
+
 ### Escala
 
 Comece com uma instância. Salas são estado em memória (com snapshot no Redis) e o Socket.IO usa o transporte padrão, sem adaptador multi-instância. Para escalar horizontalmente será necessário um adaptador Redis para o Socket.IO e balanceamento com sessões fixas; o plano Pro da Shard tem balanceamento round-robin e deploy sem downtime, mas o adaptador ainda precisa ser adicionado ao servidor.
