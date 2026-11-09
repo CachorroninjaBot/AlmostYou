@@ -1,4 +1,12 @@
-import type { ActivityContext, PublicRoomState, SessionUser } from './types.js';
+import type {
+  ActivityContext,
+  ChatHistoryPayload,
+  ChatMessage,
+  ChatSendPayload,
+  ChatTypingPayload,
+  PublicRoomState,
+  SessionUser,
+} from './types.js';
 
 export type RoomErrorCode =
   | 'ROOM_NOT_FOUND'
@@ -70,6 +78,8 @@ export interface RoomErrorPayload {
 }
 
 export interface ClientToServerEvents {
+  'chat:send': (payload: ChatSendPayload) => void;
+  'chat:typing': () => void;
   'room:join': (payload: JoinRoomPayload) => void;
   'room:leave': () => void;
   'lobby:set-content-locale': (payload: SetContentLocalePayload) => void;
@@ -86,6 +96,9 @@ export interface ClientToServerEvents {
 }
 
 export interface ServerToClientEvents {
+  'chat:message': (message: ChatMessage) => void;
+  'chat:history': (payload: ChatHistoryPayload) => void;
+  'chat:typing': (payload: ChatTypingPayload) => void;
   'room:state': (state: PublicRoomState) => void;
   'room:error': (payload: RoomErrorPayload) => void;
   'room:kicked': () => void;

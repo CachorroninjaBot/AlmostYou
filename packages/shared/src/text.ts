@@ -18,6 +18,14 @@ export function sanitizeDisplayName(
   return truncated || fallback;
 }
 
+export function sanitizeChatText(raw: string): string {
+  return raw
+    .normalize('NFC')
+    .replace(UNSAFE_CONTROL_CHARS, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 const LINK_PATTERN = /(?:https?:\/\/|www\.|discord(?:app)?\.gg\/)/i;
 
 export function containsLink(value: string): boolean {

@@ -34,9 +34,10 @@
     "waitingForHost": "Esperando a que el anfitrión empiece…",
     "needPlayers": "Se necesitan al menos {count} jugadores.",
     "youAreHost": "Eres el anfitrión",
-    "inviteHint": "Invita a tus amigos a este canal de voz.",
+    "inviteHint": "Comparte el código con quien quiera entrar: la voz es opcional.",
     "inviteFriends": "Invitar amigos",
     "inviteCopied": "Código de la sala copiado. Envíalo a quien quiera entrar.",
+    "roomCode": "Código de la sala",
     "joinRoom": "Entrar en una sala",
     "joinRoomHint": "¿Tienes un código? Pega el código completo copiado en la parte superior.",
     "joinRoomPlaceholder": "Código de la sala",
@@ -50,7 +51,7 @@
     "publicRoomHint": "La sala aparece en Descubrir hasta que empiece la partida. Cualquiera puede entrar.",
     "publicRoomHostOnly": "Solo el anfitrión puede cambiar la visibilidad de la sala.",
     "publicBadge": "Pública",
-    "connectedCount": "{count} conectados"
+    "connectedCount": "Conectados: {count}"
   },
   "discover": {
     "title": "Salas públicas",
@@ -87,7 +88,8 @@
     "watching": "Escucha con atención y responde.",
     "endTurn": "Pasar",
     "almostHint": "Imita sus respuestas: no conoces su escena.",
-    "insiderHint": "Todos los demás comparten tu escena."
+    "insiderHint": "Todos los demás comparten tu escena.",
+    "chatHint": "¿Sin llamada? Pregunta y responde aquí, en el chat."
   },
   "vote": {
     "title": "¿Quién es el Casi?",
@@ -172,6 +174,28 @@
     "reaction": "Enviar {emoji}",
     "languageMenu": "Elegir idioma de la interfaz",
     "contentLanguageMenu": "Elegir idioma de las escenas",
-    "lobbyTabs": "Secciones del lobby"
+    "lobbyTabs": "Secciones del lobby",
+    "chatPanel": "Chat de la sala",
+    "chatMessages": "Mensajes del chat",
+    "chatInput": "Escribe en el chat de la sala",
+    "chatOpen": "Abrir chat de la sala",
+    "chatClose": "Cerrar chat de la sala",
+    "chatQuick": "Respuestas rápidas"
+  },
+  "chat": {
+    "title": "Chat de la sala",
+    "connected": "En la sala: {count}",
+    "placeholder": "Escribe un mensaje…",
+    "send": "Enviar",
+    "empty": "Aún no hay mensajes. Rompe el hielo: no todo el mundo está en la llamada.",
+    "typing": "{name} está escribiendo",
+    "unread": "Mensajes sin leer: {count}",
+    "systemJoin": "{name} entró en la sala.",
+    "systemLeave": "{name} salió de la sala.",
+    "systemKick": "{name} fue expulsado de la sala.",
+    "quick1": "¿Lo describes mejor?",
+    "quick2": "¿De quién sospechas?",
+    "quick3": "Tranqui, soy yo",
+    "quick4": "¡Buena pregunta!"
   }
 }

@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import { AppHeader } from './components/AppHeader';
+import { ChatDock } from './components/ChatDock';
 import { ConnectionBanner } from './components/ConnectionBanner';
 import { ErrorToast } from './components/ErrorToast';
 import { Logo } from './components/Logo';
 import { NoticeToast } from './components/NoticeToast';
-import { ReactionBar } from './components/ReactionBar';
 import { ReactionOverlay } from './components/ReactionOverlay';
 import { DiscussScreen } from './screens/DiscussScreen';
 import { FinishedScreen } from './screens/FinishedScreen';
@@ -67,6 +68,7 @@ export default function App() {
   const status = useGameStore((store) => store.status);
   const bootError = useGameStore((store) => store.bootError);
   const state = useGameStore((store) => store.state);
+  const chatOpen = useGameStore((store) => store.chatOpen);
   const started = useRef(false);
 
   useEffect(() => {
@@ -93,10 +95,12 @@ export default function App() {
   return (
     <div className="app-shell">
       <AppHeader />
-      <main className="app-main">
-        <CurrentScreen />
-      </main>
-      <ReactionBar />
+      <div className={clsx('app-body', chatOpen && state && 'app-body--chat')}>
+        <main className="app-main">
+          <CurrentScreen />
+        </main>
+        <ChatDock />
+      </div>
       <ReactionOverlay />
       <ErrorToast />
       <NoticeToast />

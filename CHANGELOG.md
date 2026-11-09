@@ -6,6 +6,9 @@ Todas as mudanças relevantes do Almost You. O projeto ainda não publica versõ
 
 ### Adicionado
 
+- Chat de texto por sala para quem não está em call: coluna fixa no desktop, gaveta no mobile, contador de não lidas, respostas rápidas, indicador de digitação, mensagens de sistema e histórico recente ao reconectar.
+- Histórico do chat limitado a 80 mensagens, texto de até 240 caracteres, links recusados e intervalo mínimo de 1,2 segundo entre mensagens.
+- Novo visual do lobby e das telas de jogo: fundo com aurora animada, código da sala destacado como ticket, chips de status, cartões refinados e layout responsivo em 1080/900/640px.
 - Jogo completo de dedução social para 3 a 10 jogadores: 3 rodadas com revelação, conversa em turnos, votação, palpite e resultado.
 - Motor autoritativo com estado filtrado por jogador: o papel do Quase e a cena alternativa só são revelados no resultado.
 - Baralho de pares de cenas (maioria + variante do Quase) com sorteio sem repetir pares dentro da partida e três opções de palpite.
@@ -24,6 +27,9 @@ Todas as mudanças relevantes do Almost You. O projeto ainda não publica versõ
 
 ### Alterado
 
+- As reações emoji agora ficam no compositor do chat, disponíveis em todas as fases, em vez de uma barra flutuante sobre o conteúdo.
+- O código da sala ganhou destaque no topo do lobby, com botão de convite e contagem de conectados no mesmo cartão.
+- Os contadores de conectados e de mensagens não lidas deixaram de ter concordância errada no singular.
 - O banner do resultado diferencia três desfechos: o Quase escapou, acertou o palpite mesmo pego ou foi pego com o palpite errado.
 - O cliente deixa de depender de canvas: as telas são compostas por cards, chips de cena e listas de pontuação.
 - O servidor recusa entradas em salas cheias com `ROOM_FULL`, salas em partida com `ROOM_IN_PROGRESS` e salas de jogadores removidos com `ROOM_FORBIDDEN`.

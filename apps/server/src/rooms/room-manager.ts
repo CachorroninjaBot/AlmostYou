@@ -1,9 +1,13 @@
-import { randomInt } from 'node:crypto';
+import { randomInt, randomUUID } from 'node:crypto';
 import type { Server } from 'socket.io';
 import type { Logger } from 'pino';
 import {
+  CHAT_COOLDOWN_MS,
+  CHAT_HISTORY_LIMIT,
+  CHAT_TYPING_COOLDOWN_MS,
   FALLBACK_LOCALE,
   GUESS_SECONDS,
+  MAX_CHAT_LENGTH,
   MAX_PLAYERS,
   REACTION_COOLDOWN_MS,
   RESULT_SECONDS,
@@ -12,8 +16,11 @@ import {
   VOTE_SECONDS,
   containsLink,
   resolveLocale,
+  sanitizeChatText,
 } from '@almost-you/shared';
 import type {
+  ChatMessage,
+  ChatSystemEvent,
   ClientToServerEvents,
   InterServerEvents,
   PublicRoomListing,
@@ -56,6 +63,9 @@ interface RoomRuntime {
   timer: NodeJS.Timeout | null;
   timerToken: number;
   reactionTimes: Map<string, number>;
+  chat: ChatMessage[];
+  chatTimes: Map<string, number>;
+  typingTimes: Map<string, number>;
   saveChain: Promise<void>;
   listed: boolean;
   joinCode: string;
@@ -180,6 +190,7 @@ export class RoomManager {
     const roomId = resolvedId ?? normalizeRoomId(params.roomId);
     const now = Date.now();
     let room = this.rooms.get(roomId);
+    const isExistingPlayer = room?.state.players.some((player) => player.id === params.user.id) ?? false;
 
     if (room) {
       this.assertRoomJoinable(room, params.user.id);
@@ -229,6 +240,10 @@ export class RoomManager {
     }
     socketIds.add(params.socketId);
 
+    if (!isExistingPlayer) {
+      this.pushSystemChat(room, 'JOIN', params.user.name, now);
+    }
+
     this.resumeIfNeeded(room, now);
     await this.persist(room);
     this.broadcastState(room);
@@ -252,9 +267,14 @@ export class RoomManager {
     room.sockets.delete(playerId);
 
     const now = Date.now();
+    const leavingPlayer = room.state.players.find((player) => player.id === playerId);
     room.state = explicit
       ? removePlayer(room.state, playerId, now)
       : markConnected(room.state, playerId, false, now);
+
+    if (explicit && leavingPlayer) {
+      this.pushSystemChat(room, 'LEAVE', leavingPlayer.name, now);
+    }
 
     if (room.state.phase === 'vote' && allConnectedVoted(room.state)) {
       room.state = finalizeVote(room.state, this.deck, now);
@@ -292,7 +312,8 @@ export class RoomManager {
     if (targetId === playerId) {
       throw new GameError('INVALID_INPUT', 'the host cannot remove themselves');
     }
-    if (!room.state.players.some((player) => player.id === targetId)) {
+    const target = room.state.players.find((player) => player.id === targetId);
+    if (!target) {
       throw new GameError('PLAYER_NOT_FOUND', 'player not found');
     }
 
@@ -300,6 +321,7 @@ export class RoomManager {
     const socketIds = [...(room.sockets.get(targetId) ?? [])];
     room.sockets.delete(targetId);
     room.state = removePlayer(room.state, targetId, Date.now());
+    this.pushSystemChat(room, 'KICK', target.name);
     this.logger.info({ roomId: room.state.roomId, targetId }, 'player removed from lobby');
     await this.afterChange(room);
     return { socketIds };
@@ -400,6 +422,85 @@ export class RoomManager {
     });
   }
 
+  chat(roomId: string, playerId: string, rawText: string): void {
+    const room = this.requireRoom(roomId);
+    this.requirePlayer(room, playerId);
+    const text = sanitizeChatText(rawText);
+    if (!text) {
+      throw new GameError('INVALID_INPUT', 'message is empty');
+    }
+    if (Array.from(text).length > MAX_CHAT_LENGTH) {
+      throw new GameError('INVALID_INPUT', 'message is too long');
+    }
+    if (containsLink(text)) {
+      throw new GameError('INVALID_INPUT', 'links are not allowed in chat');
+    }
+
+    const now = Date.now();
+    const last = room.chatTimes.get(playerId) ?? 0;
+    if (now - last < CHAT_COOLDOWN_MS) {
+      throw new GameError('RATE_LIMITED', 'slow down a little');
+    }
+
+    const player = room.state.players.find((candidate) => candidate.id === playerId);
+    if (!player) return;
+    room.chatTimes.set(playerId, now);
+    this.appendChat(room, {
+      id: randomUUID(),
+      kind: 'player',
+      playerId,
+      playerName: player.name,
+      playerAvatarUrl: player.avatarUrl,
+      playerColor: player.color,
+      text,
+      at: now,
+    });
+  }
+
+  typing(roomId: string, playerId: string): void {
+    const room = this.requireRoom(roomId);
+    this.requirePlayer(room, playerId);
+    const now = Date.now();
+    const last = room.typingTimes.get(playerId) ?? 0;
+    if (now - last < CHAT_TYPING_COOLDOWN_MS) return;
+    const player = room.state.players.find((candidate) => candidate.id === playerId);
+    if (!player) return;
+    room.typingTimes.set(playerId, now);
+    this.emitToRoom(room, 'chat:typing', {
+      playerId,
+      playerName: player.name,
+      at: now,
+    });
+  }
+
+  getChatHistory(roomId: string): ChatMessage[] {
+    const room = this.requireRoom(roomId);
+    return [...room.chat];
+  }
+
+  private appendChat(room: RoomRuntime, message: ChatMessage): void {
+    room.chat.push(message);
+    if (room.chat.length > CHAT_HISTORY_LIMIT) {
+      room.chat.splice(0, room.chat.length - CHAT_HISTORY_LIMIT);
+    }
+    this.emitToRoom(room, 'chat:message', message);
+  }
+
+  private pushSystemChat(
+    room: RoomRuntime,
+    event: ChatSystemEvent,
+    actorName: string,
+    at = Date.now(),
+  ): void {
+    this.appendChat(room, {
+      id: randomUUID(),
+      kind: 'system',
+      event,
+      actorName,
+      at,
+    });
+  }
+
   private makeRuntime(
     state: EngineState,
     options: { joinCode: string; creatorId?: string; listed?: boolean },
@@ -410,6 +511,9 @@ export class RoomManager {
       timer: null,
       timerToken: 0,
       reactionTimes: new Map(),
+      chat: [],
+      chatTimes: new Map(),
+      typingTimes: new Map(),
       saveChain: Promise.resolve(),
       listed: options.listed ?? false,
       joinCode: options.joinCode,

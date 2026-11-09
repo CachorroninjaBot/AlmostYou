@@ -104,13 +104,18 @@
             códigos internos da sala. Votos e palpites existem apenas durante a partida.
           </li>
           <li>
+            <strong>Chat da sala:</strong> as mensagens de texto que você envia ficam apenas na
+            memória do servidor, junto com a sala, e são descartadas quando ela expira ou o servidor
+            reinicia. Elas não são gravadas no Redis nem nos registros técnicos.
+          </li>
+          <li>
             <strong>Sessão:</strong> um token assinado, mantido na memória da página, autentica sua
             conexão. Ele expira em até 12 horas.
           </li>
           <li>
             <strong>Registros técnicos:</strong> o servidor registra eventos de operação (por
             exemplo, erros e entradas/saídas de sala) para diagnóstico. Não registramos a conversa
-            por voz nem o áudio do canal.
+            por voz, o áudio do canal nem as mensagens do chat.
           </li>
         </ul>
 
@@ -187,13 +192,18 @@
             codes. Votes and guesses only exist for the duration of the match.
           </li>
           <li>
+            <strong>Room chat:</strong> the text messages you send live only in the server's
+            memory, alongside the room, and are discarded when the room expires or the server
+            restarts. They are not written to Redis or to operational logs.
+          </li>
+          <li>
             <strong>Session:</strong> a signed token kept in page memory authenticates your
             connection and expires within 12 hours.
           </li>
           <li>
             <strong>Operational logs:</strong> the server records events such as errors and
             players joining or leaving a room for troubleshooting. We do not record voice
-            conversations or channel audio.
+            conversations, channel audio or chat messages.
           </li>
         </ul>
 

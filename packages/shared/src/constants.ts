@@ -23,6 +23,12 @@ export const INSIDER_WIN_SCORE = 100;
 
 export const REACTION_COOLDOWN_MS = 900;
 
+export const MAX_CHAT_LENGTH = 240;
+export const CHAT_HISTORY_LIMIT = 80;
+export const CHAT_COOLDOWN_MS = 1_200;
+export const CHAT_TYPING_COOLDOWN_MS = 1_400;
+export const CHAT_TYPING_TTL_MS = 3_200;
+
 export const DEFAULT_LOCALE = 'en-US';
 export const FALLBACK_LOCALE = 'en-US';
 

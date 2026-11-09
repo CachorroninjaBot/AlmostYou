@@ -34,9 +34,10 @@
     "waitingForHost": "Warte, bis der Host startet…",
     "needPlayers": "Mindestens {count} Spieler werden benötigt.",
     "youAreHost": "Du bist der Host",
-    "inviteHint": "Lade deine Freunde in diesen Sprachkanal ein.",
+    "inviteHint": "Teile den Code mit allen, die mitspielen wollen — Voice ist optional.",
     "inviteFriends": "Freunde einladen",
     "inviteCopied": "Raumcode kopiert. Schick ihn allen, die mitspielen wollen.",
+    "roomCode": "Raumcode",
     "joinRoom": "Raum beitreten",
     "joinRoomHint": "Hast du einen Code? Füge den vollständigen Code von oben ein.",
     "joinRoomPlaceholder": "Raumcode",
@@ -50,7 +51,7 @@
     "publicRoomHint": "Der Raum wird in Entdecken angezeigt, bis das Spiel beginnt. Alle können beitreten.",
     "publicRoomHostOnly": "Nur der Host kann die Sichtbarkeit ändern.",
     "publicBadge": "Öffentlich",
-    "connectedCount": "{count} verbunden"
+    "connectedCount": "Verbunden: {count}"
   },
   "discover": {
     "title": "Öffentliche Räume",
@@ -87,7 +88,8 @@
     "watching": "Hör gut zu und antworte.",
     "endTurn": "Weitergeben",
     "almostHint": "Spiel mit — du kennst ihre Szene nicht.",
-    "insiderHint": "Alle anderen teilen deine Szene."
+    "insiderHint": "Alle anderen teilen deine Szene.",
+    "chatHint": "Kein Voice? Frag und antworte hier im Chat."
   },
   "vote": {
     "title": "Wer gehört fast dazu?",
@@ -172,6 +174,28 @@
     "reaction": "{emoji} senden",
     "languageMenu": "Sprache der Oberfläche wählen",
     "contentLanguageMenu": "Sprache der Szenen wählen",
-    "lobbyTabs": "Lobby-Bereiche"
+    "lobbyTabs": "Lobby-Bereiche",
+    "chatPanel": "Raumchat",
+    "chatMessages": "Chatnachrichten",
+    "chatInput": "Nachricht in den Raumchat schreiben",
+    "chatOpen": "Raumchat öffnen",
+    "chatClose": "Raumchat schließen",
+    "chatQuick": "Schnellantworten"
+  },
+  "chat": {
+    "title": "Raumchat",
+    "connected": "Im Raum: {count}",
+    "placeholder": "Nachricht schreiben…",
+    "send": "Senden",
+    "empty": "Noch keine Nachrichten. Fang an — nicht alle sind im Voice.",
+    "typing": "{name} tippt",
+    "unread": "Ungelesene Nachrichten: {count}",
+    "systemJoin": "{name} ist dem Raum beigetreten.",
+    "systemLeave": "{name} hat den Raum verlassen.",
+    "systemKick": "{name} wurde aus dem Raum entfernt.",
+    "quick1": "Beschreib es genauer?",
+    "quick2": "Wen verdächtigst du?",
+    "quick3": "Keine Sorge, ich bin’s",
+    "quick4": "Gute Frage!"
   }
 }

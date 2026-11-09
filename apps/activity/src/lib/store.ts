@@ -1,7 +1,10 @@
 import { create } from 'zustand';
+import { CHAT_HISTORY_LIMIT } from '@almost-you/shared';
 import type {
   ActivityContext,
   AuthResponse,
+  ChatMessage,
+  ChatTypingPayload,
   LocaleInfo,
   PublicRoomState,
   ReactionEvent,
@@ -31,6 +34,10 @@ interface GameStore {
   error: UiError | null;
   notice: UiNoticeCode | null;
   reactions: ReactionEvent[];
+  chat: ChatMessage[];
+  chatOpen: boolean;
+  chatUnread: number;
+  typing: ChatTypingPayload | null;
   latency: number | null;
   serverOffset: number;
 
@@ -52,9 +59,17 @@ interface GameStore {
   clearNotice: () => void;
   applyState: (state: PublicRoomState) => void;
   pushReaction: (reaction: ReactionEvent) => void;
+  setChatHistory: (messages: ChatMessage[]) => void;
+  pushChat: (message: ChatMessage) => void;
+  setTyping: (typing: ChatTypingPayload) => void;
+  setChatOpen: (open: boolean) => void;
+  markChatRead: () => void;
   setLatency: (latency: number) => void;
   reset: () => void;
 }
+
+const chatStartsOpen =
+  typeof window === 'undefined' || !window.matchMedia('(max-width: 1080px)').matches;
 
 const initialState = {
   status: 'boot' as AppStatus,
@@ -67,6 +82,10 @@ const initialState = {
   error: null,
   notice: null,
   reactions: [],
+  chat: [] as ChatMessage[],
+  chatOpen: chatStartsOpen,
+  chatUnread: 0,
+  typing: null,
   latency: null,
   serverOffset: 0,
   locales: [] as LocaleInfo[],
@@ -84,7 +103,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
   setLocales: (locales, contentLocales) => set({ locales, contentLocales }),
   setLocaleMeta: (uiLocale, dir) => set({ uiLocale, dir }),
   setConnection: (connection) => set({ connection }),
-  clearRoomState: () => set({ state: null, reactions: [] }),
+  clearRoomState: () =>
+    set({ state: null, reactions: [], chat: [], chatUnread: 0, typing: null }),
   setError: (code, message) => set({ error: { code, message, at: Date.now() } }),
   clearError: () => set({ error: null }),
   setNotice: (notice) => set({ notice }),
@@ -105,6 +125,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
       state,
       roomId: state.roomId,
       reactions: roomChanged ? [] : get().reactions,
+      chat: roomChanged ? [] : get().chat,
+      chatUnread: roomChanged ? 0 : get().chatUnread,
+      typing: roomChanged ? null : get().typing,
       notice: becameHost ? 'HOST_CHANGED' : roomChanged ? null : get().notice,
       connection: 'connected',
       serverOffset: state.serverTime - Date.now(),
@@ -114,6 +137,31 @@ export const useGameStore = create<GameStore>((set, get) => ({
   pushReaction: (reaction) => {
     const reactions = [...get().reactions, reaction].slice(-8);
     set({ reactions });
+  },
+
+  setChatHistory: (messages) =>
+    set({ chat: messages.slice(-CHAT_HISTORY_LIMIT), chatUnread: 0, typing: null }),
+
+  pushChat: (message) => {
+    const { chat, chatOpen, chatUnread, auth } = get();
+    const mine = message.kind === 'player' && message.playerId === auth?.user.id;
+    const shouldCount = !chatOpen && !mine && message.kind === 'player';
+    set({
+      chat: [...chat, message].slice(-CHAT_HISTORY_LIMIT),
+      chatUnread: shouldCount ? chatUnread + 1 : chatUnread,
+    });
+  },
+
+  setTyping: (typing) => {
+    if (typing.playerId === get().auth?.user.id) return;
+    set({ typing });
+  },
+
+  setChatOpen: (open) => set({ chatOpen: open, chatUnread: open ? 0 : get().chatUnread }),
+
+  markChatRead: () => {
+    if (get().chatUnread === 0) return;
+    set({ chatUnread: 0 });
   },
 
   setLatency: (latency) => set({ latency }),

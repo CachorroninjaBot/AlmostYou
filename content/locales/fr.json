@@ -34,9 +34,10 @@
     "waitingForHost": "En attente du lancement par l'hôte…",
     "needPlayers": "Au moins {count} joueurs sont nécessaires.",
     "youAreHost": "Vous êtes l'hôte",
-    "inviteHint": "Invitez vos amis dans ce salon vocal.",
+    "inviteHint": "Partagez le code avec ceux qui veulent jouer — le vocal est facultatif.",
     "inviteFriends": "Inviter des amis",
     "inviteCopied": "Code du salon copié. Envoyez-le à ceux qui veulent rejoindre.",
+    "roomCode": "Code du salon",
     "joinRoom": "Rejoindre un salon",
     "joinRoomHint": "Vous avez un code ? Collez le code complet copié en haut de l'écran.",
     "joinRoomPlaceholder": "Code du salon",
@@ -50,7 +51,7 @@
     "publicRoomHint": "Le salon apparaît dans Découvrir jusqu'au début de la partie. Tout le monde peut rejoindre.",
     "publicRoomHostOnly": "Seul l'hôte peut modifier la visibilité du salon.",
     "publicBadge": "Public",
-    "connectedCount": "{count} connectés"
+    "connectedCount": "Connectés : {count}"
   },
   "discover": {
     "title": "Salons publics",
@@ -87,7 +88,8 @@
     "watching": "Écoutez bien et répondez.",
     "endTurn": "Passer",
     "almostHint": "Allez dans leur sens — vous ne connaissez pas leur scène.",
-    "insiderHint": "Tous les autres partagent votre scène."
+    "insiderHint": "Tous les autres partagent votre scène.",
+    "chatHint": "Pas de vocal ? Pose tes questions ici, dans le chat."
   },
   "vote": {
     "title": "Qui est le Presque ?",
@@ -172,6 +174,28 @@
     "reaction": "Envoyer {emoji}",
     "languageMenu": "Choisir la langue de l'interface",
     "contentLanguageMenu": "Choisir la langue des scènes",
-    "lobbyTabs": "Sections du salon"
+    "lobbyTabs": "Sections du salon",
+    "chatPanel": "Chat du salon",
+    "chatMessages": "Messages du chat",
+    "chatInput": "Écrire dans le chat du salon",
+    "chatOpen": "Ouvrir le chat du salon",
+    "chatClose": "Fermer le chat du salon",
+    "chatQuick": "Réponses rapides"
+  },
+  "chat": {
+    "title": "Chat du salon",
+    "connected": "Dans la salle : {count}",
+    "placeholder": "Écris un message…",
+    "send": "Envoyer",
+    "empty": "Aucun message. Lance la conversation — tout le monde n’est pas en vocal.",
+    "typing": "{name} est en train d’écrire",
+    "unread": "Messages non lus : {count}",
+    "systemJoin": "{name} a rejoint le salon.",
+    "systemLeave": "{name} a quitté le salon.",
+    "systemKick": "{name} a été retiré du salon.",
+    "quick1": "Décris mieux ?",
+    "quick2": "Qui soupçonnes-tu ?",
+    "quick3": "Tranquille, c’est moi",
+    "quick4": "Bonne question !"
   }
 }

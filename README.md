@@ -149,6 +149,18 @@ As abas **Sua sala** e **Descobrir** seguem o padrão ARIA de tablist: `Tab` ent
 
 No lobby, o anfitrião vê um botão de remover em cada jogador conectado (menos ele mesmo). A remoção tira o jogador da sala e o impede de voltar enquanto ela existir; o jogador recebe o aviso e volta para a sala de origem do canal. A ação só existe no lobby: durante a partida, o jogo segue com quem está conectado e o papel de anfitrião é transferido se o anfitrião cair.
 
+## Chat da sala
+
+Nem todo mundo entra em call, então o jogo tem um chat de texto por sala. Em telas largas ele aparece como uma coluna fixa ao lado do conteúdo; abaixo de 1080px vira uma gaveta na parte inferior, aberta por um botão flutuante com contador de mensagens não lidas. Todo o chat funciona em português, inglês, espanhol, francês e alemão.
+
+- mensagens de texto simples (até 240 caracteres), com respostas rápidas, reações emoji e indicador de "fulano está digitando";
+- mensagens de sistema para entrada, saída explícita e remoção de jogador;
+- o histórico recente (80 mensagens) é enviado ao entrar ou reconectar, então quem chega no meio da conversa não fica perdido;
+- links são recusados, caracteres de controle são removidos e cada jogador só pode enviar uma mensagem a cada 1,2 segundo;
+- o `role="log"` com `aria-live="polite"` anuncia mensagens novas para leitores de tela e o campo tem rótulo próprio.
+
+O chat é guardado apenas na memória do processo, junto da sala: não vai para o Redis nem para os registros técnicos e é descartado quando a sala expira ou o servidor reinicia. Não há histórico permanente nem ferramentas de moderação além da remoção de jogador no lobby.
+
 ## Saúde, cabeçalhos e limites
 
 `GET /api/health` responde `{ ok, status, version, uptimeSeconds, redis, store }`. `status` vira `degraded` quando o armazenamento não está pronto (por exemplo, Redis configurado e desconectado).
@@ -172,7 +184,7 @@ Chaves ausentes caem para o inglês no servidor; idiomas RTL recebem `dir="rtl"`
 ## Estrutura
 
 ```
-apps/activity      cliente React (SDK, i18n, telas e reações)
+apps/activity      cliente React (SDK, i18n, telas, chat e reações)
 apps/server        Fastify, Socket.IO, auth, salas e conteúdo
 packages/shared    protocolo, schemas Zod, constantes e i18n helpers
 packages/game-core motor autoritativo do Almost You

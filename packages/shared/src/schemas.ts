@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import {
+  MAX_CHAT_LENGTH,
   MAX_NAME_LENGTH,
   MAX_ROOM_ID_LENGTH,
   REACTION_EMOJIS,
@@ -63,6 +64,14 @@ export const guessSchema = z
 export const reactionSchema = z
   .object({
     emoji: z.enum(REACTION_EMOJIS),
+  })
+  .strict();
+
+export const chatSendSchema = z
+  .object({
+    // Sanitisation and the final length check happen in the server so control
+    // characters and collapsed whitespace are accounted for.
+    text: z.string().min(1).max(MAX_CHAT_LENGTH * 2),
   })
   .strict();
 

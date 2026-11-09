@@ -3,6 +3,7 @@ import type { Logger } from 'pino';
 import type { ZodType } from 'zod';
 import {
   activityContextSchema,
+  chatSendSchema,
   guessSchema,
   joinRoomSchema,
   kickPlayerSchema,
@@ -132,6 +133,7 @@ export function registerSocketHandlers(io: IO, rooms: RoomManager, logger: Logge
         });
         socket.join(roomName(result.roomId));
         socket.data.roomId = result.roomId;
+        socket.emit('chat:history', { messages: rooms.getChatHistory(result.roomId) });
       });
     });
 
@@ -213,6 +215,20 @@ export function registerSocketHandlers(io: IO, rooms: RoomManager, logger: Logge
     socket.on('game:rematch', () => {
       run('game:rematch', async () => {
         await rooms.rematch(joinedRoom(), user.id);
+      });
+    });
+
+    socket.on('chat:send', (payload) => {
+      run('chat:send', () => {
+        const roomId = joinedRoom();
+        const { text } = parseOrThrow(chatSendSchema, payload);
+        rooms.chat(roomId, user.id, text);
+      });
+    });
+
+    socket.on('chat:typing', () => {
+      run('chat:typing', () => {
+        rooms.typing(joinedRoom(), user.id);
       });
     });
 

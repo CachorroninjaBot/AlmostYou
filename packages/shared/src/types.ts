@@ -51,6 +51,43 @@ export interface RoundSummary {
   winnerIds: string[];
 }
 
+export type ChatSystemEvent = 'JOIN' | 'LEAVE' | 'KICK';
+
+export interface ChatPlayerMessage {
+  id: string;
+  kind: 'player';
+  playerId: string;
+  playerName: string;
+  playerAvatarUrl: string | null;
+  playerColor: string;
+  text: string;
+  at: number;
+}
+
+export interface ChatSystemMessage {
+  id: string;
+  kind: 'system';
+  event: ChatSystemEvent;
+  actorName: string;
+  at: number;
+}
+
+export type ChatMessage = ChatPlayerMessage | ChatSystemMessage;
+
+export interface ChatHistoryPayload {
+  messages: ChatMessage[];
+}
+
+export interface ChatTypingPayload {
+  playerId: string;
+  playerName: string;
+  at: number;
+}
+
+export interface ChatSendPayload {
+  text: string;
+}
+
 export interface PublicRoomState {
   roomId: string;
   gameId: string;

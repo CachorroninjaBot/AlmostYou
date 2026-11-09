@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it } from 'vitest';
-import { MAX_PLAYERS } from '@almost-you/shared';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { CHAT_COOLDOWN_MS, CHAT_HISTORY_LIMIT, MAX_CHAT_LENGTH, MAX_PLAYERS } from '@almost-you/shared';
 import type { ScenePair, SessionUser } from '@almost-you/shared';
 import type { EngineState } from '@almost-you/game-core';
 import type { Logger } from 'pino';
@@ -310,6 +310,100 @@ describe('RoomManager.kick', () => {
     await expect(manager.kick('ROOM-A', 'host', 'guest')).rejects.toMatchObject({
       code: 'INVALID_PHASE',
     });
+  });
+});
+
+describe('RoomManager chat', () => {
+  it('starts the history with join messages', async () => {
+    const manager = makeManager();
+    await joinAll(manager, 'ROOM-A', [user('host', 'Host'), user('guest', 'Guest')]);
+
+    expect(manager.getChatHistory('ROOM-A')).toEqual([
+      expect.objectContaining({ kind: 'system', event: 'JOIN', actorName: 'Host' }),
+      expect.objectContaining({ kind: 'system', event: 'JOIN', actorName: 'Guest' }),
+    ]);
+  });
+
+  it('stores player messages with sanitized text and author data', async () => {
+    const manager = makeManager();
+    await joinAll(manager, 'ROOM-A', [user('host', 'Host')]);
+
+    manager.chat('ROOM-A', 'host', '  hello   world \n ');
+
+    expect(manager.getChatHistory('ROOM-A').at(-1)).toMatchObject({
+      kind: 'player',
+      playerId: 'host',
+      playerName: 'Host',
+      text: 'hello world',
+    });
+  });
+
+  it('rejects empty, oversized and link messages', async () => {
+    const manager = makeManager();
+    await joinAll(manager, 'ROOM-A', [user('host')]);
+
+    expect(() => manager.chat('ROOM-A', 'host', '   ')).toThrow(
+      expect.objectContaining({ code: 'INVALID_INPUT' }),
+    );
+    expect(() => manager.chat('ROOM-A', 'host', 'a'.repeat(MAX_CHAT_LENGTH + 1))).toThrow(
+      expect.objectContaining({ code: 'INVALID_INPUT' }),
+    );
+    expect(() => manager.chat('ROOM-A', 'host', 'join at https://example.com')).toThrow(
+      expect.objectContaining({ code: 'INVALID_INPUT' }),
+    );
+  });
+
+  it('enforces a cooldown between messages', async () => {
+    const manager = makeManager();
+    await joinAll(manager, 'ROOM-A', [user('host')]);
+
+    manager.chat('ROOM-A', 'host', 'first');
+    expect(() => manager.chat('ROOM-A', 'host', 'second')).toThrow(
+      expect.objectContaining({ code: 'RATE_LIMITED' }),
+    );
+  });
+
+  it('adds a system message when a player is removed or leaves', async () => {
+    const manager = makeManager();
+    await joinAll(manager, 'ROOM-A', [
+      user('host', 'Host'),
+      user('guest', 'Guest'),
+      user('third', 'Third'),
+    ]);
+
+    await manager.kick('ROOM-A', 'host', 'guest');
+    await manager.detach('ROOM-A', 'third', 'third:socket', true);
+
+    const history = manager.getChatHistory('ROOM-A');
+    expect(history).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ kind: 'system', event: 'KICK', actorName: 'Guest' }),
+        expect.objectContaining({ kind: 'system', event: 'LEAVE', actorName: 'Third' }),
+      ]),
+    );
+  });
+
+  it('keeps only the latest messages', async () => {
+    vi.useFakeTimers({ now: Date.now() });
+    try {
+      const manager = makeManager();
+      await joinAll(manager, 'ROOM-A', [user('host')]);
+
+      for (let index = 0; index < CHAT_HISTORY_LIMIT + 5; index += 1) {
+        manager.chat('ROOM-A', 'host', `message ${index}`);
+        vi.advanceTimersByTime(CHAT_COOLDOWN_MS + 10);
+      }
+
+      const history = manager.getChatHistory('ROOM-A');
+      expect(history).toHaveLength(CHAT_HISTORY_LIMIT);
+      expect(history.at(-1)).toMatchObject({
+        kind: 'player',
+        text: `message ${CHAT_HISTORY_LIMIT + 4}`,
+      });
+      expect(history[0]).toMatchObject({ kind: 'player', text: 'message 5' });
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
 

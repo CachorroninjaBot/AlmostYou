@@ -34,9 +34,10 @@
     "waitingForHost": "Waiting for the host to start…",
     "needPlayers": "At least {count} players are needed.",
     "youAreHost": "You are the host",
-    "inviteHint": "Invite your friends to this voice channel to join.",
+    "inviteHint": "Share the code with anyone who wants to join — voice is optional.",
     "inviteFriends": "Invite friends",
     "inviteCopied": "Room code copied. Send it to anyone who wants to join.",
+    "roomCode": "Room code",
     "joinRoom": "Join a room",
     "joinRoomHint": "Have a code? Paste the full code copied from the top of the screen.",
     "joinRoomPlaceholder": "Room code",
@@ -50,7 +51,7 @@
     "publicRoomHint": "The room is listed in Discover until the match starts. Anyone can join.",
     "publicRoomHostOnly": "Only the host can change the room's visibility.",
     "publicBadge": "Public",
-    "connectedCount": "{count} connected"
+    "connectedCount": "Connected: {count}"
   },
   "discover": {
     "title": "Public rooms",
@@ -87,7 +88,8 @@
     "watching": "Listen closely and answer.",
     "endTurn": "Pass",
     "almostHint": "Match their answers — you don't know their scene.",
-    "insiderHint": "Everyone else shares your scene."
+    "insiderHint": "Everyone else shares your scene.",
+    "chatHint": "No voice? Ask and answer here in the chat."
   },
   "vote": {
     "title": "Who is the Almost?",
@@ -172,6 +174,28 @@
     "reaction": "Send {emoji}",
     "languageMenu": "Choose interface language",
     "contentLanguageMenu": "Choose scene language",
-    "lobbyTabs": "Lobby sections"
+    "lobbyTabs": "Lobby sections",
+    "chatPanel": "Room chat",
+    "chatMessages": "Chat messages",
+    "chatInput": "Write in the room chat",
+    "chatOpen": "Open room chat",
+    "chatClose": "Close room chat",
+    "chatQuick": "Quick replies"
+  },
+  "chat": {
+    "title": "Room chat",
+    "connected": "In room: {count}",
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "empty": "No messages yet. Break the ice — not everyone is on voice.",
+    "typing": "{name} is typing",
+    "unread": "Unread messages: {count}",
+    "systemJoin": "{name} joined the room.",
+    "systemLeave": "{name} left the room.",
+    "systemKick": "{name} was removed from the room.",
+    "quick1": "Describe it better?",
+    "quick2": "Who do you suspect?",
+    "quick3": "Relax, it’s me",
+    "quick4": "Good question!"
   }
 }

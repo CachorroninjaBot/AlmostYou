@@ -120,18 +120,43 @@ export function LobbyScreen() {
           <h1>{t('lobby.title')}</h1>
           <p>{t('lobby.subtitle')}</p>
         </div>
-        <div className="hero__doodle" aria-hidden="true">
-          <svg viewBox="0 0 220 120">
-            <path
-              d="M16 88c22-56 46-64 60-32s30 40 48 6 42-34 62 18"
-              fill="none"
-              stroke="var(--coral)"
-              strokeWidth="7"
-              strokeLinecap="round"
-            />
-            <circle cx="34" cy="32" r="5" fill="var(--sun)" />
-            <circle cx="176" cy="26" r="7" fill="var(--mint)" />
-          </svg>
+        <div className="hero__aside">
+          <div className="room-ticket">
+            <span className="room-ticket__eyebrow">{t('lobby.roomCode')}</span>
+            <strong className="room-ticket__code">{state.roomId}</strong>
+            <button
+              type="button"
+              className="button button--primary button--compact room-ticket__button"
+              onClick={() => void invite()}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="9.5" cy="8" r="3.4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                <path
+                  d="M3.6 19c.6-3.2 3-5.2 5.9-5.2 2.4 0 4.4 1.4 5.3 3.7"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M18 8.5v5M15.5 11h5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+              {inviteCopied ? t('common.copied') : t('lobby.inviteFriends')}
+            </button>
+            <p className="room-ticket__hint">
+              {inviteCopied ? t('lobby.inviteCopied') : t('lobby.inviteHint')}
+            </p>
+          </div>
+          <div className="hero__stats">
+            <span className="stat-chip">{t('lobby.connectedCount', { count: connectedCount })}</span>
+            <span className="stat-chip">{localeInfo(state.contentLocale).nativeName}</span>
+            {listed && <span className="stat-chip stat-chip--accent">{t('lobby.publicBadge')}</span>}
+          </div>
         </div>
       </div>
 
@@ -300,43 +325,6 @@ export function LobbyScreen() {
                 />
               ))}
             </div>
-            <div className="invite-row">
-              <button
-                type="button"
-                className="button button--compact invite-button"
-                onClick={() => void invite()}
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle
-                    cx="9.5"
-                    cy="8"
-                    r="3.4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  />
-                  <path
-                    d="M3.6 19c.6-3.2 3-5.2 5.9-5.2 2.4 0 4.4 1.4 5.3 3.7"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M18 8.5v5M15.5 11h5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                {inviteCopied ? t('common.copied') : t('lobby.inviteFriends')}
-              </button>
-              <p className="invite-hint">
-                {inviteCopied ? t('lobby.inviteCopied') : t('lobby.inviteHint')}
-              </p>
-            </div>
-
             <form className="join-form" onSubmit={join}>
               <div className="join-form__header">
                 <label className="field__label" htmlFor="room-code">

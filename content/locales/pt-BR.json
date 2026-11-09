@@ -34,9 +34,10 @@
     "waitingForHost": "Aguardando o anfitrião começar…",
     "needPlayers": "São necessários pelo menos {count} jogadores.",
     "youAreHost": "Você é o anfitrião",
-    "inviteHint": "Convide seus amigos para este canal de voz.",
+    "inviteHint": "Compartilhe o código com quem quiser entrar — a call é opcional.",
     "inviteFriends": "Convidar amigos",
     "inviteCopied": "Código da sala copiado. Envie para quem quiser entrar.",
+    "roomCode": "Código da sala",
     "joinRoom": "Entrar em uma sala",
     "joinRoomHint": "Tem um código? Cole o código completo copiado no topo da tela.",
     "joinRoomPlaceholder": "Código da sala",
@@ -50,7 +51,7 @@
     "publicRoomHint": "A sala aparece em Descobrir até a partida começar. Qualquer pessoa pode entrar.",
     "publicRoomHostOnly": "Só o anfitrião pode mudar a visibilidade da sala.",
     "publicBadge": "Pública",
-    "connectedCount": "{count} conectados"
+    "connectedCount": "Conectados: {count}"
   },
   "discover": {
     "title": "Salas públicas",
@@ -87,7 +88,8 @@
     "watching": "Ouça com atenção e responda.",
     "endTurn": "Passar",
     "almostHint": "Combine com as respostas — você não conhece a cena deles.",
-    "insiderHint": "Todos os outros compartilham a sua cena."
+    "insiderHint": "Todos os outros compartilham a sua cena.",
+    "chatHint": "Sem call? Pergunte e responda por aqui, no chat."
   },
   "vote": {
     "title": "Quem é o Quase?",
@@ -172,6 +174,28 @@
     "reaction": "Enviar {emoji}",
     "languageMenu": "Escolher idioma da interface",
     "contentLanguageMenu": "Escolher idioma das cenas",
-    "lobbyTabs": "Seções do lobby"
+    "lobbyTabs": "Seções do lobby",
+    "chatPanel": "Chat da sala",
+    "chatMessages": "Mensagens do chat",
+    "chatInput": "Escreva no chat da sala",
+    "chatOpen": "Abrir chat da sala",
+    "chatClose": "Fechar chat da sala",
+    "chatQuick": "Respostas rápidas"
+  },
+  "chat": {
+    "title": "Chat da sala",
+    "connected": "Na sala: {count}",
+    "placeholder": "Escreva uma mensagem…",
+    "send": "Enviar",
+    "empty": "Nada por aqui ainda. Puxe assunto — nem todo mundo está na call.",
+    "typing": "{name} está digitando",
+    "unread": "Mensagens não lidas: {count}",
+    "systemJoin": "{name} entrou na sala.",
+    "systemLeave": "{name} saiu da sala.",
+    "systemKick": "{name} foi removido da sala.",
+    "quick1": "Descreve melhor?",
+    "quick2": "Quem você desconfia?",
+    "quick3": "Calma, sou eu",
+    "quick4": "Boa pergunta!"
   }
 }

@@ -74,7 +74,13 @@ export function DiscussScreen() {
         )}
       </div>
 
-      <p className="field__hint">{isAlmost ? t('discuss.almostHint') : t('discuss.insiderHint')}</p>
+      <div className="discuss__hints">
+        <p className="field__hint">{isAlmost ? t('discuss.almostHint') : t('discuss.insiderHint')}</p>
+        <p className="discuss__chat-hint">
+          <span aria-hidden="true">💬</span>
+          {t('discuss.chatHint')}
+        </p>
+      </div>
     </section>
   );
 }

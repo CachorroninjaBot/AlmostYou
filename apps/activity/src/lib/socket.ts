@@ -88,6 +88,9 @@ export function connectSocket(
     useGameStore.getState().setError(code, message),
   );
   client.on('game:reaction', (reaction) => useGameStore.getState().pushReaction(reaction));
+  client.on('chat:message', (message) => useGameStore.getState().pushChat(message));
+  client.on('chat:history', ({ messages }) => useGameStore.getState().setChatHistory(messages));
+  client.on('chat:typing', (typing) => useGameStore.getState().setTyping(typing));
   client.on('latency:pong', ({ t }) => useGameStore.getState().setLatency(Date.now() - t));
 
   return client;
