@@ -4,7 +4,8 @@
     "tagline": "Une scène. Un imposteur. Beaucoup de questions.",
     "loading": "Chargement…",
     "errorTitle": "Une erreur est survenue",
-    "reload": "Recharger"
+    "reload": "Recharger",
+    "bootHint": "Si le problème persiste, fermez et rouvrez l'Activity depuis Discord."
   },
   "common": {
     "host": "Hôte",

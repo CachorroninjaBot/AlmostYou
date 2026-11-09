@@ -2,6 +2,7 @@ import { resolveLocale } from '@almost-you/shared';
 import { bootstrapDiscord } from './discord/sdk';
 import { fetchLocaleResource, fetchLocales, initI18n } from './i18n';
 import { authenticate, roomIdFor } from './lib/auth';
+import { describeError } from './lib/errors';
 import { DEV_ROOM } from './lib/env';
 import { connectSocket } from './lib/socket';
 import { useGameStore } from './lib/store';
@@ -47,7 +48,8 @@ export async function bootstrap(): Promise<void> {
     connectSocket(auth, runtimeContext, roomId);
     store.setStatus('ready');
   } catch (error) {
-    store.setBootError(error instanceof Error ? error.message : String(error));
+    console.error('almost-you: bootstrap failed', error);
+    store.setBootError(describeError(error));
     store.setStatus('error');
   }
 }

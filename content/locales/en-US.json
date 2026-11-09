@@ -4,7 +4,8 @@
     "tagline": "One scene. One impostor. Lots of questions.",
     "loading": "Loading…",
     "errorTitle": "Something went wrong",
-    "reload": "Reload"
+    "reload": "Reload",
+    "bootHint": "If it keeps happening, close and reopen the Activity from Discord."
   },
   "common": {
     "host": "Host",

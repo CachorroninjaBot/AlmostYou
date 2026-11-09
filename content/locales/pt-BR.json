@@ -4,7 +4,8 @@
     "tagline": "Uma cena. Um impostor. Muitas perguntas.",
     "loading": "Carregando…",
     "errorTitle": "Algo deu errado",
-    "reload": "Recarregar"
+    "reload": "Recarregar",
+    "bootHint": "Se continuar, feche e abra a Activity novamente pelo Discord."
   },
   "common": {
     "host": "Anfitrião",

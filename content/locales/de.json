@@ -4,7 +4,8 @@
     "tagline": "Eine Szene. Ein Hochstapler. Viele Fragen.",
     "loading": "Lädt…",
     "errorTitle": "Etwas ist schiefgelaufen",
-    "reload": "Neu laden"
+    "reload": "Neu laden",
+    "bootHint": "Wenn es weiterhin passiert, schließe die Activity und öffne sie erneut über Discord."
   },
   "common": {
     "host": "Host",

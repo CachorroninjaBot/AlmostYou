@@ -42,3 +42,4 @@ Todas as mudanças relevantes do Almost You. O projeto ainda não publica versõ
 
 - O estado de "sala pública" não era salvo; a sala podia voltar a ser privada após um reinício com Redis.
 - O `.shardcloud` declarava `MAIN=apps/server/dist/index.js`, que não existe antes do build e fazia o upload acusar "MAIN file not found in project". Como `CUSTOM_COMMAND` já define build e start, o campo foi removido.
+- Quando o SDK do Discord rejeitava um comando com um objeto puro, o boot exibia `[object Object]`. Agora a tela extrai `message` e `code` do erro, registra o valor bruto no console e mostra a tela de falha com uma dica de recuperação.

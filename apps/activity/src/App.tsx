@@ -27,7 +27,9 @@ function BootScreen({ error }: { error: string | null }) {
         <p className="boot__tagline">{t('app.tagline')}</p>
         {error ? (
           <>
+            <h1 className="boot__title">{t('app.errorTitle')}</h1>
             <p className="boot__error">{error}</p>
+            <p className="boot__hint">{t('app.bootHint')}</p>
             <button type="button" className="button button--primary" onClick={() => window.location.reload()}>
               {t('app.reload')}
             </button>

@@ -4,7 +4,8 @@
     "tagline": "Una escena. Un impostor. Muchas preguntas.",
     "loading": "Cargando…",
     "errorTitle": "Algo ha fallado",
-    "reload": "Recargar"
+    "reload": "Recargar",
+    "bootHint": "Si sigue ocurriendo, cierra y vuelve a abrir la Activity desde Discord."
   },
   "common": {
     "host": "Anfitrión",
