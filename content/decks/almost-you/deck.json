@@ -1,0 +1,342 @@
+{
+  "id": "almost-you",
+  "version": 1,
+  "pairs": [
+    {
+      "id": "beach-pool",
+      "category": "places",
+      "majority": {
+        "id": "beach",
+        "emoji": "🏖️",
+        "labels": { "en-US": "Beach", "pt-BR": "Praia", "es-ES": "Playa", "fr": "Plage", "de": "Strand" }
+      },
+      "almost": {
+        "id": "pool",
+        "emoji": "🏊",
+        "labels": { "en-US": "Swimming pool", "pt-BR": "Piscina", "es-ES": "Piscina", "fr": "Piscine", "de": "Schwimmbad" }
+      }
+    },
+    {
+      "id": "forest-campsite",
+      "category": "places",
+      "majority": {
+        "id": "forest",
+        "emoji": "🌲",
+        "labels": { "en-US": "Forest", "pt-BR": "Floresta", "es-ES": "Bosque", "fr": "Forêt", "de": "Wald" }
+      },
+      "almost": {
+        "id": "campsite",
+        "emoji": "🏕️",
+        "labels": { "en-US": "Campsite", "pt-BR": "Acampamento", "es-ES": "Camping", "fr": "Camping", "de": "Campingplatz" }
+      }
+    },
+    {
+      "id": "kitchen-restaurant",
+      "category": "places",
+      "majority": {
+        "id": "kitchen",
+        "emoji": "🍳",
+        "labels": { "en-US": "Kitchen", "pt-BR": "Cozinha", "es-ES": "Cocina", "fr": "Cuisine", "de": "Küche" }
+      },
+      "almost": {
+        "id": "restaurant",
+        "emoji": "🍽️",
+        "labels": { "en-US": "Restaurant", "pt-BR": "Restaurante", "es-ES": "Restaurante", "fr": "Restaurant", "de": "Restaurant" }
+      }
+    },
+    {
+      "id": "stadium-circus",
+      "category": "places",
+      "majority": {
+        "id": "stadium",
+        "emoji": "🏟️",
+        "labels": { "en-US": "Stadium", "pt-BR": "Estádio", "es-ES": "Estadio", "fr": "Stade", "de": "Stadion" }
+      },
+      "almost": {
+        "id": "circus",
+        "emoji": "🎪",
+        "labels": { "en-US": "Circus", "pt-BR": "Circo", "es-ES": "Circo", "fr": "Cirque", "de": "Zirkus" }
+      }
+    },
+    {
+      "id": "moon-planet",
+      "category": "space",
+      "majority": {
+        "id": "moon",
+        "emoji": "🌙",
+        "labels": { "en-US": "Moon", "pt-BR": "Lua", "es-ES": "Luna", "fr": "Lune", "de": "Mond" }
+      },
+      "almost": {
+        "id": "planet",
+        "emoji": "🪐",
+        "labels": { "en-US": "Planet", "pt-BR": "Planeta", "es-ES": "Planeta", "fr": "Planète", "de": "Planet" }
+      }
+    },
+    {
+      "id": "reef-fishing",
+      "category": "nature",
+      "majority": {
+        "id": "coral-reef",
+        "emoji": "🐠",
+        "labels": { "en-US": "Coral reef", "pt-BR": "Recife de coral", "es-ES": "Arrecife de coral", "fr": "Récif corallien", "de": "Korallenriff" }
+      },
+      "almost": {
+        "id": "fishing-spot",
+        "emoji": "🎣",
+        "labels": { "en-US": "Fishing spot", "pt-BR": "Ponto de pesca", "es-ES": "Lugar de pesca", "fr": "Spot de pêche", "de": "Angelplatz" }
+      }
+    },
+    {
+      "id": "bakery-candy",
+      "category": "food",
+      "majority": {
+        "id": "bakery",
+        "emoji": "🥐",
+        "labels": { "en-US": "Bakery", "pt-BR": "Padaria", "es-ES": "Panadería", "fr": "Boulangerie", "de": "Bäckerei" }
+      },
+      "almost": {
+        "id": "candy-shop",
+        "emoji": "🍬",
+        "labels": { "en-US": "Candy shop", "pt-BR": "Loja de doces", "es-ES": "Tienda de dulces", "fr": "Confiserie", "de": "Süßwarenladen" }
+      }
+    },
+    {
+      "id": "airport-station",
+      "category": "transport",
+      "majority": {
+        "id": "airport",
+        "emoji": "✈️",
+        "labels": { "en-US": "Airport", "pt-BR": "Aeroporto", "es-ES": "Aeropuerto", "fr": "Aéroport", "de": "Flughafen" }
+      },
+      "almost": {
+        "id": "train-station",
+        "emoji": "🚉",
+        "labels": { "en-US": "Train station", "pt-BR": "Estação de trem", "es-ES": "Estación de tren", "fr": "Gare", "de": "Bahnhof" }
+      }
+    },
+    {
+      "id": "library-bookstore",
+      "category": "places",
+      "majority": {
+        "id": "library",
+        "emoji": "📚",
+        "labels": { "en-US": "Library", "pt-BR": "Biblioteca", "es-ES": "Biblioteca", "fr": "Bibliothèque", "de": "Bibliothek" }
+      },
+      "almost": {
+        "id": "bookstore",
+        "emoji": "📖",
+        "labels": { "en-US": "Bookstore", "pt-BR": "Livraria", "es-ES": "Librería", "fr": "Librairie", "de": "Buchhandlung" }
+      }
+    },
+    {
+      "id": "gym-yoga",
+      "category": "sports",
+      "majority": {
+        "id": "gym",
+        "emoji": "🏋️",
+        "labels": { "en-US": "Gym", "pt-BR": "Academia", "es-ES": "Gimnasio", "fr": "Salle de sport", "de": "Fitnessstudio" }
+      },
+      "almost": {
+        "id": "yoga-studio",
+        "emoji": "🧘",
+        "labels": { "en-US": "Yoga studio", "pt-BR": "Estúdio de yoga", "es-ES": "Estudio de yoga", "fr": "Studio de yoga", "de": "Yogastudio" }
+      }
+    },
+    {
+      "id": "concert-nightclub",
+      "category": "music",
+      "majority": {
+        "id": "concert",
+        "emoji": "🎤",
+        "labels": { "en-US": "Concert", "pt-BR": "Show", "es-ES": "Concierto", "fr": "Concert", "de": "Konzert" }
+      },
+      "almost": {
+        "id": "nightclub",
+        "emoji": "🪩",
+        "labels": { "en-US": "Nightclub", "pt-BR": "Boate", "es-ES": "Discoteca", "fr": "Boîte de nuit", "de": "Nachtclub" }
+      }
+    },
+    {
+      "id": "museum-gallery",
+      "category": "places",
+      "majority": {
+        "id": "museum",
+        "emoji": "🏛️",
+        "labels": { "en-US": "Museum", "pt-BR": "Museu", "es-ES": "Museo", "fr": "Musée", "de": "Museum" }
+      },
+      "almost": {
+        "id": "art-gallery",
+        "emoji": "🖼️",
+        "labels": { "en-US": "Art gallery", "pt-BR": "Galeria de arte", "es-ES": "Galería de arte", "fr": "Galerie d'art", "de": "Kunstgalerie" }
+      }
+    },
+    {
+      "id": "zoo-safari",
+      "category": "animals",
+      "majority": {
+        "id": "zoo",
+        "emoji": "🦁",
+        "labels": { "en-US": "Zoo", "pt-BR": "Zoológico", "es-ES": "Zoológico", "fr": "Zoo", "de": "Zoo" }
+      },
+      "almost": {
+        "id": "safari",
+        "emoji": "🦒",
+        "labels": { "en-US": "Safari", "pt-BR": "Safári", "es-ES": "Safari", "fr": "Safari", "de": "Safari" }
+      }
+    },
+    {
+      "id": "farm-ranch",
+      "category": "nature",
+      "majority": {
+        "id": "farm",
+        "emoji": "🚜",
+        "labels": { "en-US": "Farm", "pt-BR": "Fazenda", "es-ES": "Granja", "fr": "Ferme", "de": "Bauernhof" }
+      },
+      "almost": {
+        "id": "ranch",
+        "emoji": "🐎",
+        "labels": { "en-US": "Ranch", "pt-BR": "Haras", "es-ES": "Rancho", "fr": "Ranch", "de": "Reiterhof" }
+      }
+    },
+    {
+      "id": "cinema-theater",
+      "category": "places",
+      "majority": {
+        "id": "cinema",
+        "emoji": "🎬",
+        "labels": { "en-US": "Cinema", "pt-BR": "Cinema", "es-ES": "Cine", "fr": "Cinéma", "de": "Kino" }
+      },
+      "almost": {
+        "id": "theater",
+        "emoji": "🎭",
+        "labels": { "en-US": "Theater", "pt-BR": "Teatro", "es-ES": "Teatro", "fr": "Théâtre", "de": "Theater" }
+      }
+    },
+    {
+      "id": "hospital-pharmacy",
+      "category": "places",
+      "majority": {
+        "id": "hospital",
+        "emoji": "🏥",
+        "labels": { "en-US": "Hospital", "pt-BR": "Hospital", "es-ES": "Hospital", "fr": "Hôpital", "de": "Krankenhaus" }
+      },
+      "almost": {
+        "id": "pharmacy",
+        "emoji": "💊",
+        "labels": { "en-US": "Pharmacy", "pt-BR": "Farmácia", "es-ES": "Farmacia", "fr": "Pharmacie", "de": "Apotheke" }
+      }
+    },
+    {
+      "id": "castle-palace",
+      "category": "fantasy",
+      "majority": {
+        "id": "castle",
+        "emoji": "🏰",
+        "labels": { "en-US": "Castle", "pt-BR": "Castelo", "es-ES": "Castillo", "fr": "Château", "de": "Schloss" }
+      },
+      "almost": {
+        "id": "palace",
+        "emoji": "🏯",
+        "labels": { "en-US": "Palace", "pt-BR": "Palácio", "es-ES": "Palacio", "fr": "Palais", "de": "Palast" }
+      }
+    },
+    {
+      "id": "volcano-geyser",
+      "category": "nature",
+      "majority": {
+        "id": "volcano",
+        "emoji": "🌋",
+        "labels": { "en-US": "Volcano", "pt-BR": "Vulcão", "es-ES": "Volcán", "fr": "Volcan", "de": "Vulkan" }
+      },
+      "almost": {
+        "id": "geyser",
+        "emoji": "♨️",
+        "labels": { "en-US": "Geyser", "pt-BR": "Gêiser", "es-ES": "Géiser", "fr": "Geyser", "de": "Geysir" }
+      }
+    },
+    {
+      "id": "ski-ice",
+      "category": "sports",
+      "majority": {
+        "id": "ski-resort",
+        "emoji": "⛷️",
+        "labels": { "en-US": "Ski resort", "pt-BR": "Estação de esqui", "es-ES": "Estación de esquí", "fr": "Station de ski", "de": "Skigebiet" }
+      },
+      "almost": {
+        "id": "ice-rink",
+        "emoji": "⛸️",
+        "labels": { "en-US": "Ice rink", "pt-BR": "Pista de gelo", "es-ES": "Pista de hielo", "fr": "Patinoire", "de": "Eisbahn" }
+      }
+    },
+    {
+      "id": "desert-oasis",
+      "category": "nature",
+      "majority": {
+        "id": "desert",
+        "emoji": "🏜️",
+        "labels": { "en-US": "Desert", "pt-BR": "Deserto", "es-ES": "Desierto", "fr": "Désert", "de": "Wüste" }
+      },
+      "almost": {
+        "id": "oasis",
+        "emoji": "🌴",
+        "labels": { "en-US": "Oasis", "pt-BR": "Oásis", "es-ES": "Oasis", "fr": "Oasis", "de": "Oase" }
+      }
+    },
+    {
+      "id": "spaceship-satellite",
+      "category": "space",
+      "majority": {
+        "id": "spaceship",
+        "emoji": "🚀",
+        "labels": { "en-US": "Spaceship", "pt-BR": "Nave espacial", "es-ES": "Nave espacial", "fr": "Vaisseau spatial", "de": "Raumschiff" }
+      },
+      "almost": {
+        "id": "satellite",
+        "emoji": "🛰️",
+        "labels": { "en-US": "Satellite", "pt-BR": "Satélite", "es-ES": "Satélite", "fr": "Satellite", "de": "Satellit" }
+      }
+    },
+    {
+      "id": "treehouse-cabin",
+      "category": "places",
+      "majority": {
+        "id": "treehouse",
+        "emoji": "🌳",
+        "labels": { "en-US": "Treehouse", "pt-BR": "Casa na árvore", "es-ES": "Casa del árbol", "fr": "Cabane dans les arbres", "de": "Baumhaus" }
+      },
+      "almost": {
+        "id": "cabin",
+        "emoji": "🛖",
+        "labels": { "en-US": "Cabin", "pt-BR": "Cabana", "es-ES": "Cabaña", "fr": "Chalet", "de": "Hütte" }
+      }
+    },
+    {
+      "id": "aquarium-waterpark",
+      "category": "places",
+      "majority": {
+        "id": "aquarium",
+        "emoji": "🐬",
+        "labels": { "en-US": "Aquarium", "pt-BR": "Aquário", "es-ES": "Acuario", "fr": "Aquarium", "de": "Aquarium" }
+      },
+      "almost": {
+        "id": "water-park",
+        "emoji": "🎢",
+        "labels": { "en-US": "Water park", "pt-BR": "Parque aquático", "es-ES": "Parque acuático", "fr": "Parc aquatique", "de": "Wasserpark" }
+      }
+    },
+    {
+      "id": "office-coworking",
+      "category": "places",
+      "majority": {
+        "id": "office",
+        "emoji": "💼",
+        "labels": { "en-US": "Office", "pt-BR": "Escritório", "es-ES": "Oficina", "fr": "Bureau", "de": "Büro" }
+      },
+      "almost": {
+        "id": "coworking",
+        "emoji": "💻",
+        "labels": { "en-US": "Coworking space", "pt-BR": "Coworking", "es-ES": "Espacio de coworking", "fr": "Espace de coworking", "de": "Coworking-Space" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "almost-you",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run build:shared && npm run build:game-core && concurrently -k -n server,client -c blue,green \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "cross-env NODE_ENV=development NODE_OPTIONS=--conditions=development tsx watch apps/server/src/index.ts",
+    "dev:client": "vite --config apps/activity/vite.config.ts",
+    "build": "npm run build:shared && npm run build:game-core && npm run build:server && npm run build:client",
+    "build:shared": "tsc -p packages/shared/tsconfig.json",
+    "build:game-core": "tsc -p packages/game-core/tsconfig.json",
+    "build:server": "tsc -p apps/server/tsconfig.json",
+    "build:client": "vite build --config apps/activity/vite.config.ts",
+    "start": "cross-env NODE_ENV=production node apps/server/dist/index.js",
+    "test": "vitest run",
+    "smoke": "node scripts/smoke.mjs",
+    "typecheck": "tsc -p packages/shared/tsconfig.json --noEmit && tsc -p packages/game-core/tsconfig.json --noEmit && tsc -p apps/server/tsconfig.json --noEmit && tsc -p apps/activity/tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "concurrently": "^10.0.6",
+    "cross-env": "^10.1.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@almost-you/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@fastify/static": "^10.1.10",
+    "@almost-you/game-core": "*",
+    "@almost-you/shared": "*",
+    "dotenv": "^18.0.9",
+    "fastify": "^5.12.8",
+    "ioredis": "^6.0.0",
+    "jose": "^6.2.15",
+    "pino": "^10.4.0",
+    "pino-pretty": "^13.2.0",
+    "socket.io": "^4.8.4",
+    "zod": "^4.6.7"
+  }
+}

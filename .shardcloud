@@ -1,0 +1,8 @@
+DISPLAY_NAME=Almost You
+DESCRIPTION=Uma cena igual para quase todos. Descubra quem e o Quase.
+MAIN=apps/server/dist/index.js
+LANGUAGE=node
+MEMORY=1024
+VERSION=recommended
+SUBDOMAIN=almostyou
+CUSTOM_COMMAND=npm ci --include=dev --no-audit --no-fund && npm run build && npm start
