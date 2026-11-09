@@ -9,6 +9,7 @@ Todas as mudanças relevantes do Almost You. O projeto ainda não publica versõ
 - Chat de texto por sala para quem não está em call: coluna fixa no desktop, gaveta no mobile, contador de não lidas, respostas rápidas, indicador de digitação, mensagens de sistema e histórico recente ao reconectar.
 - Histórico do chat limitado a 80 mensagens, texto de até 240 caracteres, links recusados e intervalo mínimo de 1,2 segundo entre mensagens.
 - Novo visual do lobby e das telas de jogo: fundo com aurora animada, código da sala destacado como ticket, chips de status, cartões refinados e layout responsivo em 1080/900/640px.
+- Ícone e banner do bot em `assets/branding`: duas silhuetas quase idênticas (coral e menta) com um ponto amarelo na emenda, nas resoluções de upload do Discord (512×512 e 960×540) e em `@2x`.
 - Jogo completo de dedução social para 3 a 10 jogadores: 3 rodadas com revelação, conversa em turnos, votação, palpite e resultado.
 - Motor autoritativo com estado filtrado por jogador: o papel do Quase e a cena alternativa só são revelados no resultado.
 - Baralho de pares de cenas (maioria + variante do Quase) com sorteio sem repetir pares dentro da partida e três opções de palpite.

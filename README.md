@@ -112,6 +112,16 @@ Comece com uma instância. Salas são estado em memória (com snapshot no Redis)
 
 Os caminhos exatos de URL Mapping e o suporte a WebSocket pelo proxy devem ser conferidos na documentação oficial do Discord, pois mudam com o tempo.
 
+## Identidade visual
+
+Os arquivos de marca ficam em `assets/branding`:
+
+- `almost-you-avatar.png` (512×512) — avatar do app/bot no Developer Portal;
+- `almost-you-banner.png` (960×540, 16:9) — banner da listagem na App Directory;
+- os `@2x` guardam a versão em alta resolução (1024×1024 e 1792×1008).
+
+O símbolo são duas silhuetas quase idênticas, uma coral e outra verde-menta, com um ponto amarelo na emenda: a diferença mínima é a pista do "quase". O avatar não tem texto para continuar legível em 32px e dentro do recorte circular do Discord. A paleta é a mesma da interface: coral `#ff6b5b`, menta `#5eead4`, sol `#ffd166` e creme `#f7f0e2` sobre o fundo escuro `#0b111b`.
+
 ## Convites e amigos
 
 O botão **Convidar amigos** do lobby chama `openInviteDialog()` do Embedded App SDK. Ele abre o modal nativo de convite do Discord para o canal de voz da Activity, sem exigir escopo OAuth extra. Fora do Discord (modo dev) o botão copia o código da sala.
