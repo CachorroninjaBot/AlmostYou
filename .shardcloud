@@ -1,6 +1,5 @@
 DISPLAY_NAME=Almost You
 DESCRIPTION=Uma cena igual para quase todos. Descubra quem e o Quase.
-MAIN=apps/server/dist/index.js
 LANGUAGE=node
 MEMORY=1024
 VERSION=recommended

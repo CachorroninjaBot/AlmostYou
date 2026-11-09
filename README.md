@@ -83,10 +83,10 @@ O servidor serve `apps/activity/dist` na raiz, `/api/*` e `/ws` na mesma origem,
 
 1. Envie o repositório para o GitHub (ou gere um ZIP) e crie um app Node na Shard Cloud apontando para ele.
 2. O arquivo `.shardcloud` já define:
-   - `MAIN=apps/server/dist/index.js`
-   - `MEMORY=1024`
+   - `LANGUAGE=node` e `MEMORY=1024`
    - `CUSTOM_COMMAND=npm ci --include=dev && npm run build && npm start`
    - O servidor escuta na porta 80 porque `npm start` define `NODE_ENV=production`.
+   - Não há `MAIN`: o entrypoint (`apps/server/dist/index.js`) só existe depois do build, e a Shard ignora `MAIN` quando `CUSTOM_COMMAND` está presente. Declarar o caminho gera o aviso "MAIN file not found in project".
 3. No painel de variáveis de ambiente, configure:
    - `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`, `DISCORD_BOT_TOKEN`
    - `SESSION_SECRET` com um valor longo e aleatório

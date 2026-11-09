@@ -40,3 +40,4 @@ Todas as mudanças relevantes do Almost You. O projeto ainda não publica versõ
 ### Corrigido
 
 - O estado de "sala pública" não era salvo; a sala podia voltar a ser privada após um reinício com Redis.
+- O `.shardcloud` declarava `MAIN=apps/server/dist/index.js`, que não existe antes do build e fazia o upload acusar "MAIN file not found in project". Como `CUSTOM_COMMAND` já define build e start, o campo foi removido.
